@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+
+<style>
+    .bg {
+  /* The image used */
+  background-image: url("https://images.unsplash.com/photo-1593538480541-354a3b9d53eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+
+<body class="bg-dark bg" >
+<div class="container text-white">
+    <br>
+    <h1 class="text-secondary">COVID TRACKER INDIA</h1>
+    <br>
+
+
+    <div class="jumbotron text-white" style="background-image: url('https://images.unsplash.com/photo-1588615419942-9f1d6b4f04fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=2104&q=80">
+        <h3 class="display-4" th:text="${totalCases}"></h3>
+        <span class="lead"><b>Total cases reported as of today</b></span>
+        <br>
+        <span class="badge badge-light">
+            <span>Last updated </span>
+            <span th:text="${lastUpdated}"></span>
+            <span> seconds ago </span>
+        </span>
+
+
+        <hr class="my-4">
+        <p>
+            <h5>Total Active Cases: <span th:text="${totalActiveCases}"></span></h5>
+
+        </p>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" aria-valuenow = "${percentageActive}" aria-valuemin="0" aria-valuemax="100" style="width: 36%"></div>
+        </div>
+
+        <br>
+        <p>
+            <h5>Total Recovered: <span th:text="${recovered}"></span></h5>
+
+        </p>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow= "${percentageDied}" aria-valuemin="0" aria-valuemax="100" style="width: 61%"></div>
+        </div>
+
+        <br>
+        <p>
+            <h5>Total Deaths: <span th:text="${deaths}"></span></h5>
+
+        </p>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" aria-valuenow= "${percentageDied}" aria-valuemin="50" aria-valuemax="100" style="width: 2%"></div>
+        </div>
+
+        <br>
+
+    </div>
+
+
+
+    <table class="table table-hover" >
+        <tr >
+            <th>State</th>
+            <th>Total Infected</th>
+            <th>Total Recovered</th>
+            <th>Total Deceased</th>
+            <th>Total Cases</th>
+        </tr>
+        <tr th:each="regionData : ${regionWiseData}">
+            <td th:text="${regionData.region}"></td>
+            <td th:text="${regionData.totalInfected}">0</td>
+            <td th:text="${regionData.recovered}">0</td>
+            <td th:text="${regionData.deceased}">0</td>
+            <td th:text="${regionData.totalCases}">0</td>
+        </tr>
+    </table>
+</div>
+<p class="text-light"> @Created By Shivam Srivastava</p>
+</body>
+
+</html>
